@@ -1,3 +1,5 @@
+package groovyTree;
+
 import groovy.lang.Tuple2;
 
 interface Tree<T> {

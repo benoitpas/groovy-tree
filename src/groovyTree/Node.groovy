@@ -12,8 +12,15 @@ class Node<T> implements Tree<T> {
     }
 
     @Override
-    Tuple2<Tree<Tuple2<T, Integer>>, Integer> addId(Tree<T> tree, Integer index) {
-        return null
+    Tuple2<Tree<Tuple2<T, Integer>>, Integer> addId(Integer index) {
+        Tuple2<Tree<Tuple2<T,Integer>>,Integer> newLeft = left.addId(index)
+        Tuple2<Tree<Tuple2<T,Integer>>,Integer> newRight = right.addId(newLeft.second)
+
+        return new Tuple2<Tree<Tuple2<T, Integer>, Integer>>(
+                new Node(new Tuple2<T, Integer>(value, newRight.second),
+                        newLeft.first,
+                        newRight.first),
+                newRight.second + 1);
     }
 
     @Override

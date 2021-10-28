@@ -1,5 +1,9 @@
 package groovyTree
 
+import groovy.transform.Immutable
+
+// Cannot be declared @Immutable because all fields (including value) would need be to immutable
+
 class Node<T> implements Tree<T> {
     final private T value
     final private Tree<T> left
@@ -12,6 +16,15 @@ class Node<T> implements Tree<T> {
     }
 
     @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        def node = (Node<T>) o
+        this.value == node.value && left == node.left && right == node.right
+    }
+
+        @Override
     Tuple2<Tree<Tuple2<T, Integer>>, Integer> addId(Integer index) {
         Tuple2<Tree<Tuple2<T,Integer>>,Integer> newLeft = left.addId(index)
         Tuple2<Tree<Tuple2<T,Integer>>,Integer> newRight = right.addId(newLeft.second)

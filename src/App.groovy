@@ -8,7 +8,7 @@ class App {
     static void main(String[] args) {
         Leaf l = new Leaf<String>()
         Node ne = new Node<String>("e", l, l)
-        Node nd = new Node("e", l, l)
+        Node nd = new Node("d", l, l)
         Node nc = new Node("c", nd, ne)
         Node nb = new Node("b", l, l)
         Node na = new Node("a", nb, nc)
